@@ -1,10 +1,9 @@
 <test-header-component1/>
 <main>
   <ul id="users">
-    <li><app-user-button [user]="users[0]" (select)="onSelectUser($event)"/></li>
-    <li><app-user-button [user]="users[1]" (select)="onSelectUser($event)"/></li>
-    <li><app-user-button [user]="users[2]" (select)="onSelectUser($event)"/></li>
-    <li><app-user-button [user]="users[3]" (select)="onSelectUser($event)"/></li>
+    @for (user of users; track user.id) {
+      <li><app-user-button [user]="user" (select)="onSelectUser($event)"/></li>
+    }
   </ul>
   <app-user-task [id]="selectedUser?.id" [name]="selectedUser?.name"/>
 </main>
