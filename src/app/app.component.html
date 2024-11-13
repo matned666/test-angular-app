@@ -4,7 +4,7 @@
     <!--  przy renderowaniu elementów angular musi mieć informację o unikalnym id dla którego renderuje elementy  -->
     @for (user of users; track user.id) {
       <li>
-        <app-user-button [user]="user" (select)="onSelectUser($event)"/>
+        <app-user-button [selected]="user.id === actualUserId" [user]="user" (select)="onSelectUser($event)"/>
       </li>
     }
   </ul>
