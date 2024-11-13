@@ -12,13 +12,13 @@ import {DUMMY_TASKS} from './dummy-tasks';
   styleUrl: './user-tasks.component.css'
 })
 export class UserTasksComponent {
-  @Input({required:true}) id?: string;
+  @Input({required:true}) userId?: string;
   @Input({required:true}) name?: string;
 
   tasks = DUMMY_TASKS;
 
   get userTasks() {
-    return this.tasks.filter(task => this.id === task.userId);
+    return this.tasks.filter((task) => this.userId === task.userId);
   }
 
 
