@@ -17,21 +17,25 @@ export class AddNewUserTaskComponent {
     this.close.emit();
   }
 
-  onSaveButtonClick(title: string, content: string) {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = (today.getMonth() + 1).toString().padStart(2, '0'); // Dodaj 1, ponieważ miesiące są indeksowane od 0
-    const day = today.getDate().toString().padStart(2, '0');
-    const dueDate = `${year}-${month}-${day}`;
+  onSaveButtonClick(title: string, summary: string, dueDate: string) {
+
+    // tworzenie aktualnej daty w typescript
+    //
+    // const today = new Date();
+    // const year = today.getFullYear();
+    // const month = (today.getMonth() + 1).toString().padStart(2, '0'); // Dodaj 1, ponieważ miesiące są indeksowane od 0
+    // const day = today.getDate().toString().padStart(2, '0');
+    // const dueDate = `${year}-${month}-${day}`;
 
     const newTask : TaskModel = {
       id: '0',
       userId: this.userId ?? '',
       title: title,
-      summary: content,
+      summary: summary,
       dueDate: dueDate
     };
 
+    console.log(newTask);
     this.save.emit(newTask);
   }
 
