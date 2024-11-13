@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {TestHeader1Component} from './header/testHeader1.component';
 import {UserComponent} from './user/user.component';
 import {DUMMY_USERS} from './user/dummy-users';
-import {UserTaskComponent} from './user-task/user-task.component';
+import {UserTasksComponent} from './user-tasks/user-tasks.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [TestHeader1Component, UserComponent, UserTaskComponent],
+  imports: [TestHeader1Component, UserComponent, UserTasksComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -16,8 +16,12 @@ export class AppComponent {
   users = DUMMY_USERS;
   actualUserId?: string;
 
+
   get selectedUser() {
-    return this.users.find((user) => user.id === this.actualUserId);
+    console.log('actualUserId w selectedUser():' + this.actualUserId)
+    let find = this.users.find((user) => user.id === this.actualUserId);
+    console.log('getSelectedUser()='+ find?.id+ find?.name);
+    return find;
   }
 
   onSelectUser(id: string) {
