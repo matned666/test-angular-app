@@ -1,9 +1,16 @@
 <test-header-component1/>
 <main>
   <ul id="users">
+    <!--  przy renderowaniu elementów angular musi mieć informację o unikalnym id dla którego renderuje elementy  -->
     @for (user of users; track user.id) {
-      <li><app-user-button [user]="user" (select)="onSelectUser($event)"/></li>
+      <li>
+        <app-user-button [user]="user" (select)="onSelectUser($event)"/>
+      </li>
     }
   </ul>
-  <app-user-task [id]="selectedUser?.id" [name]="selectedUser?.name"/>
+  @if (selectedUser) {
+    <app-user-task [id]="selectedUser.id" [name]="selectedUser.name"/>
+  } @else {
+    <p>Select a user to see the content</p>
+  }
 </main>
