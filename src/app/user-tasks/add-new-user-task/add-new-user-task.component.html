@@ -1,0 +1,17 @@
+<div>
+  <div>
+    <h2>Formularz</h2>
+
+    <div>
+      <input type="text" id="title" #titleInput>
+    </div>
+    <div>
+      <input type="text" id="content" #contentInput>
+    </div>
+
+    <div>
+      <button (click)="onCancelButtonClick()">Cancel</button>
+      <button (click)="onSaveButtonClick(titleInput.value,  contentInput.value)">Save</button>
+    </div>
+  </div>
+</div>
