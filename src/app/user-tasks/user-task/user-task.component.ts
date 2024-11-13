@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {TaskModel} from './task.model';
 
 @Component({
@@ -10,5 +10,10 @@ import {TaskModel} from './task.model';
 })
 export class UserTaskComponent {
   @Input({required: true}) userTask?: TaskModel;
+  @Output() taskToRemoveId = new EventEmitter<string>();
 
+
+  onCompleteTask(id: string | undefined) {
+    this.taskToRemoveId.emit(id);
+  }
 }
