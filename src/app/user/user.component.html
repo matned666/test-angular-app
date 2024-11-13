@@ -6,10 +6,10 @@
 <!--</div>-->
 <div>
   <button (click)="onSelectedUserClick()">
-    <img [src]="userImagePath()"
-         [alt]="user().name"
+    <img [src]="userImagePath"
+         [alt]="name"
     />
-    <span>{{ user().name }} {{clickedTimes}}</span>
+    <span>{{ name }}</span>
   </button>
 </div>
 <!--<div>-->
