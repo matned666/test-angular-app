@@ -1,0 +1,13 @@
+
+div {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #c3b3d1;
+  text-align: center;
+  width: 90%;
+  max-width: 60rem;
+  margin: 2.5rem auto;
+  display: grid;
+  grid-auto-flow: row;
+  gap: 2rem;
+}
