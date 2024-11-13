@@ -2,15 +2,12 @@
 <main>
   <ul id="users">
     <!--  przy renderowaniu elementów angular musi mieć informację o unikalnym id dla którego renderuje elementy  -->
-    @for (user of users; track user.id) {
-      <li>
+      <li *ngFor="let user of users">
         <app-user-button [user]="user" (select)="onSelectUser($event)"/>
       </li>
-    }
   </ul>
-  @if (selectedUser) {
-    <app-user-task [id]="selectedUser.id" [name]="selectedUser.name"/>
-  } @else {
-    <p>Select a user to see the content</p>
-  }
+    <app-user-task *ngIf="selectedUser; else fallback" [id]="selectedUser.id" [name]="selectedUser.name"/>
+  <ng-template #fallback>
+    <div>Select a user to see the content</div>
+  </ng-template>
 </main>
