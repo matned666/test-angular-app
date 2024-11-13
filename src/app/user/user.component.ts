@@ -1,4 +1,4 @@
-import {Component, computed, Input, input} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-user-button',
@@ -9,23 +9,15 @@ import {Component, computed, Input, input} from '@angular/core';
 })
 
 export class UserComponent {
-  // @Input({required: true}) avatar!: string;
-  // @Input({required: true}) name!: string;
+  @Input({required: true}) avatar!: string;
+  @Input({required: true}) name!: string;
 
-  // avatar = input<string>();
-  avatar = input.required<string>(); // input jest generyczny, dlatego musimy dać typ np. string
-  name = input.required<string>(); // pamiętać że wywołanie w html jest z () jak sygnału
-
-
-  // get userImagePath() {
-  //   return 'assets/users/' + this.avatar();
-  // }
-
-  userImagePath = computed(() => 'assets/users/' + this.avatar())
-
+  get userImagePath() {
+    return 'assets/users/' + this.avatar;
+  }
 
   onSelectedUserClick() {
-    console.log('user clicked: ' + this.name())
+    console.log('user clicked: ' + this.name)
   }
 
 }
