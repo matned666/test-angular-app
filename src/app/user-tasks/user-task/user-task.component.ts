@@ -12,11 +12,11 @@ import {CardComponent} from '../../shared/card/card.component';
   styleUrl: './user-task.component.css'
 })
 export class UserTaskComponent {
-  @Input({required: true}) userTask?: TaskModel;
+  @Input({required: true}) userTask!: TaskModel;
   @Output() taskToRemoveId = new EventEmitter<string>();
 
 
-  onCompleteTask(id: string | undefined) {
-    this.taskToRemoveId.emit(id);
+  onCompleteTask() {
+    this.taskToRemoveId.emit(this.userTask.id);
   }
 }
