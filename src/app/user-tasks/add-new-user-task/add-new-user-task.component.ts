@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output, signal} from '@angular/core';
-import {TaskModel} from '../user-task/task.model';
 import {FormsModule} from '@angular/forms';
+import {type NewTaskData} from '../user-task/task.model';
 
 
 @Component({
@@ -15,7 +15,7 @@ import {FormsModule} from '@angular/forms';
 export class AddNewUserTaskComponent {
   @Input({required:true}) userId?: string;
   @Output() close = new EventEmitter<void>();
-  @Output() save = new EventEmitter<TaskModel>();
+  @Output() save = new EventEmitter<NewTaskData>();
 
   enteredTitle = signal('');
   enteredSummary = signal('');
@@ -26,15 +26,11 @@ export class AddNewUserTaskComponent {
   }
 
   onSaveButtonClick() {
-    const newTask : TaskModel = {
-      id: '0',
-      userId: this.userId ?? '',
-      summary: this.enteredSummary(),
+    const newTask = {
       title: this.enteredTitle(),
-      dueDate: this.enteredDate()
+      summary: this.enteredSummary(),
+      date: this.enteredDate()
     };
-
-    console.log(newTask);
     this.save.emit(newTask);
   }
 

@@ -2,7 +2,7 @@ import {Component, Input} from '@angular/core';
 import {UserTaskComponent} from './user-task/user-task.component';
 import {DUMMY_TASKS} from './dummy-tasks';
 import {AddNewUserTaskComponent} from './add-new-user-task/add-new-user-task.component';
-import {TaskModel} from './user-task/task.model';
+import {type NewTaskData, type TaskModel} from './user-task/task.model';
 
 @Component({
   selector: 'app-user-tasks',
@@ -15,8 +15,8 @@ import {TaskModel} from './user-task/task.model';
   styleUrl: './user-tasks.component.css'
 })
 export class UserTasksComponent {
-  @Input({required:true}) userId?: string;
-  @Input({required:true}) name?: string;
+  @Input({required:true}) userId!: string;
+  @Input({required:true}) name!: string;
   addingNewTask = false;
 
   tasks = DUMMY_TASKS;
@@ -25,9 +25,14 @@ export class UserTasksComponent {
     return this.tasks.filter((task) => this.userId === task.userId);
   }
 
-  addNewTask(task: TaskModel) {
-    task.id = this.generateNextId();
-    this.tasks = [...this.tasks, task];
+  addNewTask(newTask: NewTaskData) {
+    this.tasks.push({
+      id: new Date().getTime().toString(),
+      userId: this.userId,
+      title: newTask.title,
+      summary: newTask.summary,
+      dueDate: newTask.date
+    })
     this.addingNewTask = false;
   }
 
@@ -39,8 +44,4 @@ export class UserTasksComponent {
     this.tasks = this.tasks.filter((task) => task.id !== taskId);
   }
 
-  private generateNextId(): string {
-    const maxId = Math.max(...this.tasks.map(task => parseInt(task.id.slice(1), 10)));
-    return `t${maxId + 1}`;
-  }
 }
