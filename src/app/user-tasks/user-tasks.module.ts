@@ -4,11 +4,11 @@ import {UserTasksComponent} from './user-tasks.component';
 import {AddNewUserTaskComponent} from './add-new-user-task/add-new-user-task.component';
 import {SharedModule} from '../shared/shared.module';
 import {FormsModule} from '@angular/forms';
-import {DatePipe} from '@angular/common';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations:[UserTasksComponent, UserTaskComponent, AddNewUserTaskComponent],
   exports:[UserTasksComponent],
-  imports: [SharedModule, FormsModule, DatePipe]
+  imports: [SharedModule, FormsModule, CommonModule]
 })
 export  class UserTasksModule{}
