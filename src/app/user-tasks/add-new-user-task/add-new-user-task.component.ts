@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, Output, signal} from '@angular/core';
+import {Component, EventEmitter, inject, Input, Output, signal} from '@angular/core'; // inject jest do drugiego podejścia wstrzykiwania objektu
 import {FormsModule} from '@angular/forms';
-import {type NewTaskData} from '../user-task/task.model';
+import {UserTasksService} from '../user-tasks.service';
 
 
 @Component({
@@ -13,9 +13,15 @@ import {type NewTaskData} from '../user-task/task.model';
   standalone: true
 })
 export class AddNewUserTaskComponent {
-  @Input({required:true}) userId?: string;
+  @Input({required:true}) userId!: string;
   @Output() close = new EventEmitter<void>();
-  @Output() save = new EventEmitter<NewTaskData>();
+
+  constructor(private userTaskService: UserTasksService) {}
+  // inne podejście:
+  // private userTaskService = inject(UserTasksService);
+
+  // ----> chatGPT pisze że w wiekszości przypadków konstruktor,
+  // w funkcjach stand-alone -> inject
 
   enteredTitle = signal('');
   enteredSummary = signal('');
@@ -31,7 +37,8 @@ export class AddNewUserTaskComponent {
       summary: this.enteredSummary(),
       date: this.enteredDate()
     };
-    this.save.emit(newTask);
+    this.userTaskService.addTask(this.userId, newTask)
+    this.close.emit();
   }
 
 

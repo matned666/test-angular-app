@@ -7,13 +7,13 @@
   </header>
 
   @if (addingNewTask) {
-    <app-add-new-user-task [userId]="userId" (close)="onAddNewUserTaskClick(false)" (save)="addNewTask($event)"/>
+    <app-add-new-user-task [userId]="userId" (close)="onAddNewUserTaskClick(false)"/>
   }
 
   <ul>
     @for (task of userTasks; track task.id) {
     <li>
-      <app-user-task [userTask]="task" (taskToRemoveId)="removeGivenTask($event)"/>
+      <app-user-task [userTask]="task"/>
     </li>
     }
   </ul>
