@@ -1,5 +1,4 @@
 import {Component, EventEmitter, inject, Input, Output, signal} from '@angular/core'; // inject jest do drugiego podejścia wstrzykiwania objektu
-import {FormsModule} from '@angular/forms';
 import {UserTasksService} from '../user-tasks.service';
 
 
@@ -7,10 +6,6 @@ import {UserTasksService} from '../user-tasks.service';
   selector: 'app-add-new-user-task',
   templateUrl: './add-new-user-task.component.html',
   styleUrls: ['./add-new-user-task.component.css'],
-  imports: [
-    FormsModule
-  ],
-  standalone: true
 })
 export class AddNewUserTaskComponent {
   @Input({required:true}) userId!: string;

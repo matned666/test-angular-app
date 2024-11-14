@@ -7,7 +7,6 @@ import {DUMMY_USERS} from './user/dummy-users';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'test-app-1';
   users = DUMMY_USERS;
   actualUserId?: string;
 
